@@ -1,0 +1,13 @@
+/* colors */
+
+* {
+  al:   #00000000;
+
+  bg:   #1A191DFF; // Background
+  bga:  #EBDBB2FF; // Uptime background  
+  fga:  #EBDBB2FF; // Actions foreground
+  fg:   #282828FF; // Uptime foreground
+  ac:   #DD5888FF; // Icon background
+  se:   #D75589FF; // Focused actions background
+  padding: 2px;
+}

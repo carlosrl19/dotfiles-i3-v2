@@ -1,0 +1,56 @@
+#Settings
+backend = "glx";
+vsync = true;
+detect-client-opacity = true;
+use-damage = false;
+transparent-clipping = false;
+
+# shadow
+shadow = true;
+shadow-color = "#18181b"
+shadow-radius = 5;
+shadow-opacity = .6
+shadow-offset-x = -5;
+shadow-offset-y = -5;
+shadow-exclude = [
+  "class_g = 'Dunst'",
+];
+
+# fading
+fading = true;
+fade-delta = 12;
+fade-in-step = 0.05;
+fade-out-step = 0.05;
+
+# opacity
+inactive-dim = .4;		# Dim inactive windows. (0.0 - 1.0, defaults to 0).
+mark-wmwin-focused = true;	# Try to detect WM windows and mark them as active.
+mark-ovredir-focused = true;
+detect-rounded-corners = true;
+
+opacity-rule = [
+  "80:class_g = 'Org.gnome.Nautilus'",
+  "80:class_g = 'Polybar'",
+  "95:class_g = 'Code'",
+  "80:class_g = 'Gedit'",
+  "90:class_g = 'Evince'",
+  "80:class_g = 'libreoffice-writer'"
+];
+
+
+
+# wintypes
+wintypes: {
+  unkown = {opacity = false; shadow = false;};
+  toolbar = {opacity = false; shadow = false;};
+  utility = {opacity = false; shadow = false;};
+  splash = {opacity = false; shadow = false;};
+  dialog = {opacity = false; shadow = false;};
+  normal = {opacity = false; shadow = false;};
+  combo = {opacity = false; shadow = false;};
+  menu = {opacity = false; shadow = false;};
+  dropdown_menu = {opacity = false; shadow = false;};
+  popup_menu = {opacity = false; shadow = false;};
+  tooltip = {opacity = false; shadow = false;};
+  dnd = {opacity = false; shadow = false;};
+};

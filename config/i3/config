@@ -1,0 +1,136 @@
+# Set mod variable to super key
+set $mod Mod4
+set $mod1 Mod1
+
+#Border radius
+border_radius 10
+
+# Turn borders on
+# class                 border  backgr. text    indicator child_border
+client.focused          #9a83b7 #9a83b7 #9a83b7 #9a83b7
+for_window [class="^.*"] border pixel 2
+
+# Change gap size
+gaps outer 5
+gaps inner 6
+#gaps left 220
+gaps top 35
+
+# Drag floating windows
+floating_modifier $mod
+
+# Set up screenshots and partial screenshots
+bindsym --release Print exec maim -u ~/Imágenes/Capturas\ de\ pantalla/`date +%Y-%m-%d_%H:%M:%S`.png && exec dunstify --replace=1 -i ~/.icons/Colloid-red-dark/apps/scalable/screengrab.svg 'Screenshoot taked!'
+
+# Bind audio keys to pactl volume control
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && exec dunstify --replace=1 -i ~/.icons/dunst/volume-plus.svg 'Volume +5'
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && exec dunstify --replace=1 -i ~/.icons/dunst/volume-minus.svg 'Volume -5'
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && exec dunstify --replace=1 -i ~/.icons/dunst/volume-mute.svg 'Volume muted'
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && exec dunstify --replace=1 -i ~/.icons/dunst/microphone-mute.svg 'Microphone muted'
+
+# Move focus with the arrow keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move windows with shift + arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in specified direction
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# Change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+g floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+Control+space focus mode_toggle
+
+# Bind keys to switch to next workspace
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
+
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# Reload the configuration file
+bindsym $mod+Shift+t reload
+
+# Restart i3 inplace
+bindsym $mod+Shift+r restart
+
+# Add resize keybindings in place of mode
+bindsym $mod+Control+Left resize shrink width 40 px
+bindsym $mod+Control+Down resize grow height 40 px
+bindsym $mod+Control+Up resize shrink height 40 px
+bindsym $mod+Control+Right resize grow width 40 px
+bindsym $mod+Shift+Control+Left resize shrink width 1 px or 1
+bindsym $mod+Shift+Control+Down resize grow height 1 px or 1
+bindsym $mod+Shift+Control+Up resize shrink height 1 px or 1
+bindsym $mod+Shift+Control+Right resize grow width 1 px or 1
+
+# Make sure fonts are loaded right
+exec_always xset +fp ~/.fonts/
+exec_always xset fp rehash
+
+# Run startup wallpaper
+exec_always bash -c "feh --bg-fill $(cat ~/scripts/misc/default-bg.txt | head -n 1 | tr -d '\n')"
+
+# Start notification daemon
+
+# Startup daemons for compositor and status bar
+exec_always --no-startup-id pkill picom; picom --no-use-damage
+exec_always --no-startup-id pkill dunst; dunst
+exec_always --no-startup-id pkill greenclip; greenclip daemon # Clipboard manager (https://github.com/erebe/greenclip)
+
+# Use URxvt settings from Xresources
+exec_always --no-startup-id xrdb ~/.Xresources
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+exec_always --no-startup-id rm ~/scripts/misc/backlight-lockfile
+exec_always --no-startup-id rm ~/scripts/misc/volume-lockfile
+exec --no-startup-id xset r rate 250 20
+
+# system shortcuts
+bindsym $mod+Shift+q kill
+bindsym $mod+BackSpace exec --no-startup-id i3lock -c 282c34
+bindsym $mod1+d exec --no-startup-id rofi -show drun -show-icons -font 'Cantarel 10'
+bindsym $mod+t exec terminator
+bindsym $mod+x exec thunar
+bindsym $mod+b exec brave
+bindsym $mod+Shift+p exec bash ~/scripts/misc/powermenu.sh
+bindsym $mod+Shift+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' -no-config -theme /usr/share/rofi/themes/clipboard.rasi
