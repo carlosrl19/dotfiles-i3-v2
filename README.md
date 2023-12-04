@@ -1,5 +1,4 @@
-# i3wm-dotfiles-v2
-# nightmare19/dotfiles
+# dotfiles i3-v2 - nightmare19/dotfiles
 
 A dotfile organization repository for my current i3/Manjaro setup!
 
