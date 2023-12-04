@@ -10,7 +10,6 @@ A dotfile organization repository for my current i3/Manjaro setup!
 - Window Manager: [i3-gaps-rounded](https://aur.archlinux.org/packages/i3-gaps-rounded-git)
 - Compositor: [picom (ibhagwan's fork)](https://github.com/ibhagwan/picom)
 - Status Bar: [polybar](https://github.com/polybar/polybar)
-- Icon Fonts: [Hack Nerd Font](https://github.com/ryanoasis/nerd-fonts)
 - Notifications: [dunst]([https://github.com/k-vernooy/dunst](https://github.com/dunst-project/dunst))
 - Terminal: Terminator
 - Launcher/system menus/filebrowser: [Rofi](https://github.com/Davatorium/rofi)
